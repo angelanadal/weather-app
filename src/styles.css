@@ -1,0 +1,90 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #1a2c5b;
+  max-width: 100%;
+}
+
+.degrees,
+.city-name,
+#current-time {
+  color: #fff;
+}
+
+.degrees {
+  font-weight: bold;
+}
+
+.day-text,
+.temp-range {
+  color: #b8dff0;
+}
+
+.centered {
+  text-align: center;
+}
+
+.first-color {
+  background: #1a2c5b;
+}
+
+.second-color {
+  background: #3e4e88;
+}
+
+.third-color {
+  background: #7971ea;
+}
+
+.fourth-color {
+  background: #b8dff0;
+}
+
+.background-card {
+  border-radius: 10px;
+  max-width: 100%;
+  border-color: #4a5ea5;
+  border-style: solid;
+  box-shadow: 12px 12px 2px 1px #4a5ea5;
+  margin-top: 50px;
+}
+
+.top-level-row {
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 25px;
+}
+
+.search-bar {
+  width: 100%;
+}
+
+.text-input,
+.submit-btn {
+  width: 100%;
+}
+
+.degrees {
+  font-size: 60px;
+  margin-top: 10px;
+}
+
+.sun-icon,
+.cloud-sun-icon,
+.rain-icon {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.sun-icon,
+.cloud-sun-icon {
+  color: #fffed1;
+}
+
+.rain-icon {
+  color: rgba(172, 172, 172, 0.867);
+}
+
+.day-text {
+  font-size: 22px;
+}

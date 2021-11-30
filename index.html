@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 2 Homework</title>
+    <link rel="stylesheet" href="src/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/e43948191b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="background-card second-color">
+        <!--First Row-->
+        <div class="row top-level-row">
+          <div class="col-2 col-lg-1">
+            <button class="btn btn-primary" id="current-loc">
+              <i class="fas fa-search-location fa-2x"></i>
+            </button>
+          </div>
+          <div class="col-10 col-lg-11">
+            <form class="search-bar" id="search-bar">
+              <div class="row">
+                <div class="col-10">
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="city-input"
+                    placeholder="Enter a city..."
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="col-2">
+                  <input
+                    type="submit"
+                    class="submit-btn"
+                    label="Search"
+                    value="Search"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--Second Row-->
+        <div class="row top-level-row">
+          <div class="col-10">
+            <div class="row">
+              <div class="col">
+                <h1 class="degrees" id="current-temp">18°C</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h2 class="city-name" id="current-city">Winnipeg</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span id="current-time"> </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-sun fa-7x sun-icon"></i>
+          </div>
+        </div>
+        <!--Third Row-->
+        <div class="row top-level-row">
+          <div class="col centered">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="align-self-center">
+                  <span class="day-text">Sun</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="align-self-center">
+                  <i class="fas fa-sun fa-3x sun-icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span class="temp-range"><strong>19°</strong> | 6°</span>
+              </div>
+            </div>
+          </div>
+          <div class="col centered">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="align-self-center">
+                  <span class="day-text">Mon</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="align-self-center">
+                  <i class="fas fa-sun fa-3x sun-icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span class="temp-range"><strong>15°</strong> | 8°</span>
+              </div>
+            </div>
+          </div>
+          <div class="col centered">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="align-self-center">
+                  <span class="day-text">Tue</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="align-self-center">
+                  <i class="fas fa-cloud-sun fa-3x cloud-sun-icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span class="temp-range"><strong>9°</strong> | -1°</span>
+              </div>
+            </div>
+          </div>
+          <div class="col centered">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="align-self-center">
+                  <span class="day-text">Wed</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="align-self-center">
+                  <i class="fas fa-cloud-rain fa-3x rain-icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span class="temp-range"><strong>8°</strong> | 3°</span>
+              </div>
+            </div>
+          </div>
+          <div class="col centered">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="align-self-center">
+                  <span class="day-text">Thu</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="align-self-center">
+                  <i class="fas fa-cloud-sun fa-3x cloud-sun-icon"></i>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span class="temp-range"><strong>8°</strong> | -2°</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
