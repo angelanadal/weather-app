@@ -6,7 +6,8 @@ body {
 
 .degrees,
 .city-name,
-#current-time {
+#current-time,
+a {
   color: #fff;
 }
 
