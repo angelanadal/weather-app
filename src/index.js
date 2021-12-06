@@ -1,5 +1,3 @@
-import "./styles.css";
-
 let currentTime = new Date();
 
 let days = [
