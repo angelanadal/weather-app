@@ -33,10 +33,56 @@
       <div class="background-card second-color">
         <!--First Row-->
         <div class="row top-level-row">
-          <h1 class="centered">Weather App</h1>
+         <div class="col">
+            <h1 class="title centered">Weather App</h1>
         </div>
         <!--Second Row-->
-        <div class="row top-level-row"></div>
+        <div class="row top-level-row"><p>Row 2: Search engine</p>
+        <div class="col-2 col-lg-1">
+            <button class="btn btn-primary" id="current-loc">
+              <i class="fas fa-search-location fa-2x"></i> <span class="current-location-text">Current Location</span>
+            </button>
+          </div>
+          <div class="col-10 col-lg-11">
+            <form class="search-bar" id="search-bar">
+              <div class="row">
+                <div class="col-10">
+                  <input
+                    type="text"
+                    class="text-input"
+                    id="city-input"
+                    placeholder="Enter a city..."
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="col-2">
+                  <input
+                    type="submit"
+                    class="submit-btn"
+                    label="Search"
+                    value="Search"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div></div>
+        <!--Third Row-->
+        <div class="row top-level-row">
+          <div class="col">
+            <p>Row 3: Current weather details</p>
+            <div id="current-city">City name</div>
+            <span id="current-temp">-10</span>
+            <span id="temp-units">°C | °F</span>
+            <i class="fas fa-cloud fa-7x rain-icon"></i>
+            <div id="current-description">Grey skies for now</span>
+            <div id="humidity">Humidity: </span>
+            <div id="wind-speed">Wind: </span>
+         </div>
+          </div>
+        </div>
+        <hr />
+        <!--Fourth Row-->
         <div class="row top-level-row">
           <div class="col centered">
             <a
