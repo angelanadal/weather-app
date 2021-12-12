@@ -5,6 +5,10 @@ body {
   color: #fff;
 }
 
+a {
+  color: #60faff;
+}
+
 .day-text,
 .temp-range {
   color: #b8dff0;
