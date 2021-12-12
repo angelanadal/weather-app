@@ -40,7 +40,7 @@ function handleWeatherResponse(response) {
   descriptionElement.innerHTML = `${response.data.weather[0].description}`;
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
