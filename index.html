@@ -31,8 +31,8 @@
   <body>
     <div class="container">
       <div class="background-card second-color">
+        <!--Search engine-->
         <div class="row top-level-row">
-          <!--Second Row-->
           <div class="row top-level-row align-items-center">
             <div class="col-3 centered">
               <button class="btn btn-primary centered" id="current-loc">
@@ -73,13 +73,24 @@
             </div>
           </div>
         </div>
-        <!--Third Row-->
+        <!--Current weather information-->
         <div class="row top-level-row">
           <div class="col">
-            <div id="current-city">City name</div>
-            <div id="humidity">Humidity:</div>
-            <div id="wind-speed">Wind:</div>
-            <div id="last-updated">Last updated:</div>
+            <div id="current-city"></div>
+            <br />
+            <div id="humidity">
+              Humidity: <span id="current-humidity"></span>
+            </div>
+            <div id="wind-speed">
+              Wind: <span id="current-wind-speed"></span>
+            </div>
+            <div id="feels-like">
+              Feels like: <span id="current-wind-chill"></span>
+            </div>
+            <br />
+            <div id="last-updated">
+              Last updated: <span id="current-time"></span>
+            </div>
           </div>
           <div class="col-3"></div>
           <div class="col">
@@ -89,10 +100,10 @@
               </div>
               <div class="col align-self-start">
                 <div class="row no-gutters">
-                  <div class="col no-padding">
+                  <div class="col no-padding centered">
                     <span id="current-temp">-10</span>
                   </div>
-                  <div class="col align-self-center no-padding">
+                  <div class="col align-self-center">
                     <span class="temp-units">°C | <a href="#">°F</a></span>
                   </div>
                 </div>
@@ -106,7 +117,7 @@
           </div>
         </div>
         <hr />
-        <!--Fourth Row-->
+        <!--Footer-->
       </div>
       <div class="row">
         <div class="col centered">

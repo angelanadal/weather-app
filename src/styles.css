@@ -85,14 +85,21 @@ a {
   padding-right: 0%;
 }
 
+#current-city,
+#current-time,
+#current-humidity,
+#current-wind-speed,
+#current-wind-chill,
+#current-temp {
+  font-weight: bold;
+}
+
 #current-city {
   font-size: 40px;
-  font-weight: bold;
 }
 
 #current-temp {
   font-size: 80px;
-  font-weight: bold;
 }
 
 .temp-units {
@@ -100,5 +107,9 @@ a {
 }
 
 #description {
-  font-size: 20px;
+  font-size: 24px;
+}
+
+#description:first-letter {
+  text-transform: capitalize;
 }
