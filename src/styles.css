@@ -79,12 +79,21 @@ a {
   font-size: 22px;
 }
 
+.no-padding {
+  padding-left: 0%;
+  padding-right: 0%;
+}
+
 #current-city {
-  font-size: 32px;
+  font-size: 40px;
 }
 
 #current-temp {
-  font-size: 60px;
+  font-size: 80px;
   font-weight: bold;
   margin-top: 10px;
+}
+
+#description {
+  font-size: 20px;
 }
