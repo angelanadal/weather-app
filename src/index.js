@@ -23,19 +23,28 @@ let apiKey = "a8730d7b28118354d14e2046c817ba28";
 let units = "metric";
 
 function handleWeatherResponse(response) {
+  console.log(response.data.wind);
   let temperatureElement = document.querySelector("#current-temp");
   let cityElement = document.querySelector("#current-city");
   let humidityElement = document.querySelector("#current-humidity");
   let windSpeedElement = document.querySelector("#current-wind-speed");
   let feelsLikeElement = document.querySelector("#current-wind-chill");
   let descriptionElement = document.querySelector("#description");
+  let iconElement = document.querySelector(".icon");
 
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   cityElement.innerHTML = response.data.name;
   humidityElement.innerHTML = `${response.data.main.humidity}%`;
-  windSpeedElement.innerHTML = `${response.data.wind.speed} km/h`;
+  windSpeedElement.innerHTML = `${Math.round(
+    response.data.wind.speed * 3.6
+  )} km/h`;
   feelsLikeElement.innerHTML = `${Math.round(response.data.main.feels_like)}°C`;
   descriptionElement.innerHTML = `${response.data.weather[0].description}`;
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 function search(event) {

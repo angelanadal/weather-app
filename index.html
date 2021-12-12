@@ -95,16 +95,21 @@
           <div class="col-3"></div>
           <div class="col">
             <div class="row">
-              <div class="col centered no-padding">
-                <i class="fas fa-cloud fa-7x rain-icon"></i>
+              <div class="col no-padding">
+                <img
+                  class="icon centered-img"
+                  id="current-weather-icon"
+                  src="http://openweathermap.org/img/wn/03d@2x.png"
+                  alt=""
+                />
               </div>
-              <div class="col align-self-start">
+              <div class="col align-self-center">
                 <div class="row no-gutters">
                   <div class="col no-padding centered">
-                    <span id="current-temp">-10</span>
+                    <span id="current-temp"></span>
                   </div>
                   <div class="col align-self-center">
-                    <span class="temp-units">°C | <a href="#">°F</a></span>
+                    <span class="temp-units">°C / <a href="#">°F</a></span>
                   </div>
                 </div>
               </div>
