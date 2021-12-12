@@ -7,6 +7,7 @@ body {
 
 a {
   color: #60faff;
+  text-decoration: none;
 }
 
 .day-text,
@@ -37,10 +38,10 @@ a {
 .background-card {
   border-radius: 10px;
   max-width: 100%;
-  border-color: #4a5ea5;
-  border-style: solid;
+  border: 1px solid #4a5ea5;
   box-shadow: 12px 12px 2px 1px #4a5ea5;
-  margin-top: 50px;
+  margin: 50px auto;
+  padding: 5px;
 }
 
 .top-level-row {
@@ -92,7 +93,10 @@ a {
 #current-temp {
   font-size: 80px;
   font-weight: bold;
-  margin-top: 10px;
+}
+
+.temp-units {
+  font-size: 27px;
 }
 
 #description {
