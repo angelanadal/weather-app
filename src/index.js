@@ -35,9 +35,7 @@ function handleWeatherResponse(response) {
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   cityElement.innerHTML = response.data.name;
   humidityElement.innerHTML = `${response.data.main.humidity}%`;
-  windSpeedElement.innerHTML = `${Math.round(
-    response.data.wind.speed * 3.6
-  )} km/h`;
+  windSpeedElement.innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
   feelsLikeElement.innerHTML = `${Math.round(response.data.main.feels_like)}°C`;
   descriptionElement.innerHTML = `${response.data.weather[0].description}`;
   iconElement.setAttribute(
