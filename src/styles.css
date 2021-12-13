@@ -66,6 +66,13 @@ a {
   width: 100%;
 }
 
+.submit-btn,
+#current-loc {
+  font-family: "Montserrat", sans-serif;
+  text-transform: none;
+  font-size: 16px;
+}
+
 .no-padding {
   padding-left: 0%;
   padding-right: 0%;
@@ -94,6 +101,12 @@ a {
 
 .temp-units {
   font-size: 27px;
+}
+
+.temp-units .active {
+  color: #fff;
+  font-weight: bold;
+  cursor: text;
 }
 
 #description {

@@ -8,6 +8,10 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css"
+      rel="stylesheet"
+    />
     <!--Import font-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -76,7 +80,14 @@
         <!--Current weather information-->
         <div class="row top-level-row">
           <div class="col">
-            <div id="current-city"></div>
+            <div class="row align-items-center">
+              <div class="col-1">
+                <i class="flag" id="flag"></i>
+              </div>
+              <div class="col">
+                <span id="current-city"></span>
+              </div>
+            </div>
             <br />
             <div id="humidity">
               Humidity: <span id="current-humidity"></span>
@@ -99,7 +110,7 @@
                 <img
                   class="icon centered-img"
                   id="current-weather-icon"
-                  src="https://openweathermap.org/img/wn/03d@2x.png"
+                  src=""
                   alt=""
                 />
               </div>
@@ -109,14 +120,17 @@
                     <span id="current-temp"></span>
                   </div>
                   <div class="col align-self-center">
-                    <span class="temp-units">°C / <a href="#">°F</a></span>
+                    <span class="temp-units"
+                      ><a href="#" id="celsius-link" class="active">°C</a> /
+                      <a href="#" id="fahrenheit-link">°F</a></span
+                    >
                   </div>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col">
-                <div class="centered" id="description">Grey skies for now</div>
+                <div class="centered" id="description"></div>
               </div>
             </div>
           </div>
