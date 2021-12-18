@@ -12,6 +12,7 @@ a {
 
 .day-text,
 .temp-range {
+  font-size: 18px;
   color: #b8dff0;
 }
 

@@ -23,6 +23,37 @@ function updateCurrentTime() {
 let apiKey = "a8730d7b28118354d14e2046c817ba28";
 let units = "metric";
 
+function generateForecastHTML(day, img, tempRange, condition) {
+  return `
+    <div class="col centered">
+      <div class="row align-items-center">
+        <div class="col">
+          <div class="align-self-center">
+            <span class="day-text">${day}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="align-self-center">
+            <img
+              class="icon centered-img"
+              id="forecast-${day}-icon"
+              src="${img}"
+              alt="${condition}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span class="temp-range"><strong>${tempRange.max}°</strong> | ${tempRange.min}°</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function handleWeatherResponse(response) {
   let temperatureElement = document.querySelector("#current-temp");
   let cityElement = document.querySelector("#current-city");
