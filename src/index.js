@@ -54,7 +54,7 @@ function generateForecastHTML(day, img, tempRange, condition) {
   `;
 }
 
-function handleWeatherResponse(response) {
+function updateCurrentWeather(weatherData, locationData) {
   let temperatureElement = document.querySelector("#current-temp");
   let cityElement = document.querySelector("#current-city");
   let humidityElement = document.querySelector("#current-humidity");
@@ -64,33 +64,52 @@ function handleWeatherResponse(response) {
   let iconElement = document.querySelector(".icon");
   let flagElement = document.querySelector("#flag");
 
-  celsiusTemp = response.data.main.temp;
-  celsiusFeelsLike = response.data.main.feels_like;
+  celsiusTemp = weatherData.temp;
+  celsiusFeelsLike = weatherData.feels_like;
 
   temperatureElement.innerHTML = Math.round(celsiusTemp);
-  cityElement.innerHTML = response.data.name;
-  humidityElement.innerHTML = `${response.data.main.humidity}%`;
+  cityElement.innerHTML = locationData.name;
+  humidityElement.innerHTML = `${weatherData.humidity}%`;
   windSpeedElement.innerHTML = `${Math.round(
-    response.data.wind.speed * 3.6
+    weatherData.wind_speed * 3.6
   )} km/h`;
   feelsLikeElement.innerHTML = `${Math.round(celsiusFeelsLike)}°C`;
-  descriptionElement.innerHTML = `${response.data.weather[0].description}`;
+  descriptionElement.innerHTML = `${weatherData.weather[0].description}`;
   iconElement.setAttribute(
     "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
   );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
+  iconElement.setAttribute("alt", weatherData.weather[0].description);
   flagElement.setAttribute(
     "class",
-    `flag flag-${response.data.sys.country.toLowerCase()}`
+    `flag flag-${locationData.country.toLowerCase()}`
   );
-  flagElement.setAttribute("alt", response.data.sys.country);
+  flagElement.setAttribute("alt", locationData.country);
   updateCurrentTime();
+}
+
+function handleWeatherResponse(response, locationData) {
+  console.log(response.data);
+  updateCurrentWeather(response.data.current, locationData);
 }
 
 function search(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}`;
-  axios.get(`${apiUrl}&appid=${apiKey}`).then(handleWeatherResponse);
+  let lat;
+  let lon;
+  axios.get(`${apiUrl}&appid=${apiKey}`).then((response) => {
+    console.log(response.data);
+    lat = response.data.coord.lat;
+    lon = response.data.coord.lon;
+    let locationData = {
+      country: response.data.sys.country,
+      name: response.data.name,
+    };
+    apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}`;
+    axios
+      .get(`${apiUrl}&appid=${apiKey}`)
+      .then((response) => handleWeatherResponse(response, locationData));
+  });
 }
 
 function handleSearch(event) {
@@ -110,8 +129,17 @@ currentLocationBtn.addEventListener("click", (event) => {
   navigator.geolocation.getCurrentPosition((position) => {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&appid=${apiKey}`;
-    axios.get(`${apiUrl}&appid=${apiKey}`).then(handleWeatherResponse);
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}`;
+    axios.get(`${apiUrl}&appid=${apiKey}`).then((response) => {
+      let locationData = {
+        country: response.data.sys.country,
+        name: response.data.name,
+      };
+      apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=${units}`;
+      axios
+        .get(`${apiUrl}&appid=${apiKey}`)
+        .then((response) => handleWeatherResponse(response, locationData));
+    });
   });
 });
 
