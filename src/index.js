@@ -28,7 +28,7 @@ let units = "metric";
 
 function generateForecastHTML(day, img, tempRange, condition) {
   return `
-    <div class="col centered">
+    <div class="col centered" id="forecast-${day}">
       <div class="row align-items-center">
         <div class="col">
           <div class="align-self-center">
@@ -50,24 +50,29 @@ function generateForecastHTML(day, img, tempRange, condition) {
       </div>
       <div class="row">
         <div class="col">
-          <span class="temp-range"><strong>${tempRange.max}°</strong> | ${tempRange.min}°</span>
+          <span class="temp-range"><strong>${Math.round(
+            tempRange.max
+          )}°</strong> | ${Math.round(tempRange.min)}°</span>
         </div>
       </div>
     </div>
   `;
 }
 
+let forecastTemperatures = {};
 function updateWeatherForecast(forecastData) {
   let forecastElement = document.querySelector("#forecast");
   let forecastCards = "";
+  forecastTemperatures = {};
   forecastData.slice(0, 5).forEach((forecast) => {
     let day = new Date(forecast.dt * 1000);
     day = shortDays[day.getDay()];
     let img = `https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`;
     let temp = {
-      min: Math.round(forecast.temp.min),
-      max: Math.round(forecast.temp.max),
+      min: forecast.temp.min,
+      max: forecast.temp.max,
     };
+    forecastTemperatures[day] = temp;
     let description = forecast.weather[0].description;
     forecastCards =
       forecastCards + generateForecastHTML(day, img, temp, description);
@@ -112,6 +117,8 @@ function updateCurrentWeather(weatherData, locationData) {
 function handleWeatherResponse(response, locationData) {
   updateCurrentWeather(response.data.current, locationData);
   updateWeatherForecast(response.data.daily);
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
 }
 
 function search(city) {
@@ -177,6 +184,17 @@ function displayFahrenheitTemp(event) {
   let fahrenheitFeelsLike = toFahrenheit(celsiusFeelsLike);
   let feelsLikeElement = document.querySelector("#current-wind-chill");
   feelsLikeElement.innerHTML = `${Math.round(fahrenheitFeelsLike)}°F`;
+
+  Object.keys(forecastTemperatures).forEach((day) => {
+    let temp = {
+      min: toFahrenheit(forecastTemperatures[day].min),
+      max: toFahrenheit(forecastTemperatures[day].max),
+    };
+    let tempRange = document.querySelector(`#forecast-${day} .temp-range`);
+    tempRange.innerHTML = `<strong>${Math.round(
+      temp.max
+    )}°</strong> | ${Math.round(temp.min)}°`;
+  });
 }
 
 function displayCelsiusTemp(event) {
@@ -187,6 +205,17 @@ function displayCelsiusTemp(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemp);
   let feelsLikeElement = document.querySelector("#current-wind-chill");
   feelsLikeElement.innerHTML = `${Math.round(celsiusFeelsLike)}°C`;
+
+  Object.keys(forecastTemperatures).forEach((day) => {
+    let temp = {
+      min: forecastTemperatures[day].min,
+      max: forecastTemperatures[day].max,
+    };
+    let tempRange = document.querySelector(`#forecast-${day} .temp-range`);
+    tempRange.innerHTML = `<strong>${Math.round(
+      temp.max
+    )}°</strong> | ${Math.round(temp.min)}°`;
+  });
 }
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
