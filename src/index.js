@@ -7,6 +7,9 @@ let days = [
   "Friday",
   "Saturday",
 ];
+
+let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 function updateCurrentTime() {
   let currentTime = new Date();
   let day = days[currentTime.getDay()]; // returns a value between 0 and 6.
@@ -54,6 +57,24 @@ function generateForecastHTML(day, img, tempRange, condition) {
   `;
 }
 
+function updateWeatherForecast(forecastData) {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastCards = "";
+  forecastData.slice(0, 5).forEach((forecast) => {
+    let day = new Date(forecast.dt * 1000);
+    day = shortDays[day.getDay()];
+    let img = `https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`;
+    let temp = {
+      min: Math.round(forecast.temp.min),
+      max: Math.round(forecast.temp.max),
+    };
+    let description = forecast.weather[0].description;
+    forecastCards =
+      forecastCards + generateForecastHTML(day, img, temp, description);
+  });
+  forecastElement.innerHTML = forecastCards;
+}
+
 function updateCurrentWeather(weatherData, locationData) {
   let temperatureElement = document.querySelector("#current-temp");
   let cityElement = document.querySelector("#current-city");
@@ -89,8 +110,8 @@ function updateCurrentWeather(weatherData, locationData) {
 }
 
 function handleWeatherResponse(response, locationData) {
-  console.log(response.data);
   updateCurrentWeather(response.data.current, locationData);
+  updateWeatherForecast(response.data.daily);
 }
 
 function search(city) {
@@ -98,7 +119,6 @@ function search(city) {
   let lat;
   let lon;
   axios.get(`${apiUrl}&appid=${apiKey}`).then((response) => {
-    console.log(response.data);
     lat = response.data.coord.lat;
     lon = response.data.coord.lon;
     let locationData = {
