@@ -117,3 +117,8 @@ a {
 #description:first-letter {
   text-transform: capitalize;
 }
+
+.forecast-img {
+  width: 100px;
+  height: 100px;
+}

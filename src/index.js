@@ -40,7 +40,7 @@ function generateForecastHTML(day, img, tempRange, condition) {
         <div class="col">
           <div class="align-self-center">
             <img
-              class="icon centered-img"
+              class="icon centered-img forecast-img"
               id="forecast-${day}-icon"
               src="${img}"
               alt="${condition}"
@@ -67,7 +67,7 @@ function updateWeatherForecast(forecastData) {
   forecastData.slice(0, 5).forEach((forecast) => {
     let day = new Date(forecast.dt * 1000);
     day = shortDays[day.getDay()];
-    let img = `https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`;
+    let img = `img/${forecast.weather[0].icon}.png`;
     let temp = {
       min: forecast.temp.min,
       max: forecast.temp.max,
@@ -101,10 +101,7 @@ function updateCurrentWeather(weatherData, locationData) {
   )} km/h`;
   feelsLikeElement.innerHTML = `${Math.round(celsiusFeelsLike)}°C`;
   descriptionElement.innerHTML = `${weatherData.weather[0].description}`;
-  iconElement.setAttribute(
-    "src",
-    `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`
-  );
+  iconElement.setAttribute("src", `img/${weatherData.weather[0].icon}.png`);
   iconElement.setAttribute("alt", weatherData.weather[0].description);
   flagElement.setAttribute(
     "class",
